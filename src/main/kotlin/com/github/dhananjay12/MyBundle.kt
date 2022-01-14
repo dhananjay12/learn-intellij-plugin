@@ -1,4 +1,4 @@
-package com.github.dhananjay12.learnintellijplugin
+package com.github.dhananjay12
 
 import com.intellij.DynamicBundle
 import org.jetbrains.annotations.NonNls

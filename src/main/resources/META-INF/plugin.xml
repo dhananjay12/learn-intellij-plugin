@@ -1,18 +1,26 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <id>com.github.dhananjay12.learnintellijplugin</id>
-    <name>learn-intellij-plugin</name>
+    <id>com.github.dhananjay12</id>
+    <name>coding-helper</name>
     <vendor>dhananjay12</vendor>
 
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.dhananjay12.learnintellijplugin.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.dhananjay12.learnintellijplugin.services.MyProjectService"/>
+        <applicationService serviceImplementation="com.github.dhananjay12.services.MyApplicationService"/>
+        <projectService serviceImplementation="com.github.dhananjay12.services.MyProjectService"/>
     </extensions>
+    
+    <actions>
+        
+        <action class="com.github.dhananjay12.actions.StackOverflowSearch" text="StackOverflow Search">
+            <add-to-group group-id="ConsoleEditorPopupMenu" anchor="first"></add-to-group>
+            <add-to-group group-id="EditorPopupMenu" anchor="first"></add-to-group>
+        </action>
+    </actions>
 
     <applicationListeners>
-        <listener class="com.github.dhananjay12.learnintellijplugin.listeners.MyProjectManagerListener"
+        <listener class="com.github.dhananjay12.listeners.MyProjectManagerListener"
                   topic="com.intellij.openapi.project.ProjectManagerListener"/>
     </applicationListeners>
 </idea-plugin>

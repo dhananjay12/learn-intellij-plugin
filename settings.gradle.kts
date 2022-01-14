@@ -1,1 +1,1 @@
-rootProject.name = "learn-intellij-plugin"
+rootProject.name = "coding-helper"

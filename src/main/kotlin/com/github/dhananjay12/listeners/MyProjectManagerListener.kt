@@ -1,9 +1,9 @@
-package com.github.dhananjay12.learnintellijplugin.listeners
+package com.github.dhananjay12.listeners
 
 import com.intellij.openapi.components.service
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.project.ProjectManagerListener
-import com.github.dhananjay12.learnintellijplugin.services.MyProjectService
+import com.github.dhananjay12.services.MyProjectService
 
 internal class MyProjectManagerListener : ProjectManagerListener {
 

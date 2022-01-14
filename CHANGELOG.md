@@ -1,6 +1,6 @@
 <!-- Keep a Changelog guide -> https://keepachangelog.com -->
 
-# learn-intellij-plugin Changelog
+# coding-helper Changelog
 
 ## [Unreleased]
 ### Added
