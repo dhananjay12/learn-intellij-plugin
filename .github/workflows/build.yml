@@ -147,8 +147,8 @@ jobs:
       - name: Download build-output artifact
         uses: actions/download-artifact@master
         with:
-          name: build-output
-          path: ./build/distributions/${{ needs.build.outputs.name }}v${{ needs.build.outputs.version }}.zip
+          name: ${{ needs.build.outputs.filename }}
+          path: ./build/distributions/${{ needs.build.outputs.filename }}
 
       # Create new release draft - which is not publicly visible and requires manual acceptance
       - name: Create Release Draft
