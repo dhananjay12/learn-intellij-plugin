@@ -30,6 +30,8 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.properties.outputs.version }}
+      name: ${{ steps.properties.outputs.name }}
+      filename: ${{ steps.artifact.outputs.filename }}
       changelog: ${{ steps.properties.outputs.changelog }}
     steps:
 
