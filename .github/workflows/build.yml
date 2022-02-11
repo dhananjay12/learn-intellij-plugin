@@ -168,5 +168,4 @@ jobs:
             --notes "$(cat << 'EOM'
           ${{ needs.build.outputs.changelog }}
           EOM
-          )" \
-          ${{ github.workspace }}/build/distributions/${{ needs.build.outputs.filename }}
+          )"
