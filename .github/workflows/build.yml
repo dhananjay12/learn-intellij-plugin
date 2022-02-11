@@ -162,4 +162,4 @@ jobs:
           ${{ needs.build.outputs.changelog }}
           EOM
           )" \
-          './build/distribution/${{ needs.build.outputs.name }}v${{ needs.build.outputs.version }}.zip'
+          './build/distributions/${{ needs.build.outputs.filename }}'
