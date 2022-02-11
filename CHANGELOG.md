@@ -4,4 +4,4 @@
 
 ## [Unreleased]
 ### Added
-- Simple stackoverflow search for errors
+- Simple stackoverflow search for errors in console or editor
