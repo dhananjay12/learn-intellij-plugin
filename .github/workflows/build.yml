@@ -144,6 +144,12 @@ jobs:
             --jq '.[] | select(.draft == true) | .id' \
             | xargs -I '{}' gh api -X DELETE repos/{owner}/{repo}/releases/{}
 
+      - name: Download build-output artifact
+          uses: actions/download-artifact@master
+          with:
+            name: build-output
+            path: ./build/distribution/${{ needs.build.outputs.name }}v${{ needs.build.outputs.version }}.zip
+
       # Create new release draft - which is not publicly visible and requires manual acceptance
       - name: Create Release Draft
         env:
@@ -156,4 +162,4 @@ jobs:
           ${{ needs.build.outputs.changelog }}
           EOM
           )" \
-          './build/distributions/${{ steps.artifact.outputs.filename }}'
+          './build/distribution/${{ needs.build.outputs.name }}v${{ needs.build.outputs.version }}.zip'
