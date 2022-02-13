@@ -125,8 +125,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v2.2.4
         with:
-          name: ${{ steps.artifact.outputs.filename }}
-          path: ./build/distributions/content/*/*
+          name: ${{ steps.artifact.outputs.filename }}.zip
+          path: ./build/distributions/
 
   # Prepare a draft release for GitHub Releases page for the manual verification
   # If accepted and published, release workflow would be triggered
@@ -153,7 +153,7 @@ jobs:
       - name: Download build-output artifact
         uses: actions/download-artifact@v2
         with:
-          name: ${{ steps.artifact.outputs.filename }}
+          name: ${{ steps.artifact.outputs.filename }}.zip
           path: ${{ github.workspace }}/build/distributions/
 
       - name: Display structure of downloaded files
@@ -180,6 +180,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: ${{ github.workspace }}/build/libs/${{ needs.build.outputs.filename }}.jar
-          asset_name: ${{ needs.build.outputs.filename }}.jar
-          asset_content_type: application/java-archive
+          asset_path: ${{ github.workspace }}/build/distributions/${{ needs.build.outputs.filename }}.zip
+          asset_name: ${{ needs.build.outputs.filename }}.zip
+          asset_content_type: application/zip
