@@ -114,3 +114,21 @@ tasks {
         channels.set(listOf(properties("pluginVersion").split('-').getOrElse(1) { "default" }.split('.').first()))
     }
 }
+
+tasks.register("incrementVersion"){
+    fun generateVersion(version:String): String {
+        val (oldMajor, oldMinor, oldPatch) = version.split(".").map(String::toInt)
+        var (newMajor, newMinor, newPatch) = arrayOf(oldMajor, oldMinor, oldPatch + 1)
+        return "$newMajor.$newMinor.$newPatch"
+    }
+    doLast {
+        var version = properties("pluginVersion")
+        val newVersion = generateVersion(version)
+        println(newVersion)
+        val gradleFile = file("gradle.properties")
+        exec {
+            commandLine("sh","incrementVersion.sh", "$newVersion")
+        }
+        //gradleFile.getText().replaceFirst("pluginVersion = '$version'","version = '$newVersion'")
+    }
+}
