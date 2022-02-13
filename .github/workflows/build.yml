@@ -149,7 +149,7 @@ jobs:
       - name: Download build-output artifact
         uses: actions/download-artifact@v2
         with:
-          name: ${{ needs.build.outputs.filename }}
+          name: ${{ needs.build.outputs.filename }}.jar
           path: ${{ github.workspace }}/build/libs/${{ needs.build.outputs.filename }}.jar
 
       - name: Display structure of downloaded files
@@ -175,7 +175,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}/assets # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
           asset_path: ${{ github.workspace }}/build/libs/${{ needs.build.outputs.filename }}.jar
           asset_name: ${{ needs.build.outputs.filename }}.jar
           asset_content_type: application/java-archive
