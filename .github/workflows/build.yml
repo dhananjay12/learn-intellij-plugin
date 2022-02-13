@@ -153,7 +153,7 @@ jobs:
       - name: Download build-output artifact
         uses: actions/download-artifact@v2
         with:
-          name: ${{ steps.build.outputs.filename }}.zip
+          name: ${{ needs.build.outputs.filename }}.zip
           path: ${{ github.workspace }}/build/distributions/
 
       - name: Display structure of downloaded files
