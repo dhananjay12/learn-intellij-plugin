@@ -150,15 +150,15 @@ jobs:
             --jq '.[] | select(.draft == true) | .id' \
             | xargs -I '{}' gh api -X DELETE repos/{owner}/{repo}/releases/{}
 
-      - name: Display structure of distributions files
-        run: ls -R
-        working-directory: ${{ github.workspace }}/build/distributions
-
       - name: Download build-output artifact
         uses: actions/download-artifact@v2
         with:
-          name: ${{ needs.build.outputs.filename }}.zip
+          name: distributions
           path: ${{ github.workspace }}/build/distributions/
+
+      - name: Display structure of downloaded files
+        run: ls -R
+        working-directory: ${{ github.workspace }}
 
       # Create new release draft - which is not publicly visible and requires manual acceptance
       - name: Create Release Draft
