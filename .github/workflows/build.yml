@@ -115,7 +115,7 @@ jobs:
           FILENAME=`ls *.zip`
           unzip "$FILENAME" -d content
 
-          echo "::set-output name=filename::$FILENAME"
+          echo "::set-output name=filename::${FILENAME:0:-4}"
 
       # Store already-built plugin as an artifact for downloading
       - name: Upload artifact
@@ -150,7 +150,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: ${{ needs.build.outputs.filename }}
-          path: ${{ github.workspace }}/build/distributions/${{ needs.build.outputs.filename }}
+          path: ${{ github.workspace }}/build/libs/${{ needs.build.outputs.filename }}.jar
 
       - name: Display structure of downloaded files
         run: ls -R
@@ -176,6 +176,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: ${{ github.workspace }}/build/distributions/${{ needs.build.outputs.filename }}
-          asset_name: ${{ needs.build.outputs.filename }}
-          asset_content_type: application/zip
+          asset_path: ${{ github.workspace }}/build/libs/${{ needs.build.outputs.filename }}.jar
+          asset_name: ${{ needs.build.outputs.filename }}.jar
+          asset_content_type: application/java-archive
