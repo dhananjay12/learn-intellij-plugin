@@ -117,6 +117,10 @@ jobs:
 
           echo "::set-output name=filename::${FILENAME:0:-4}"
 
+      - name: Display structure of downloaded files
+        run: ls -R
+        working-directory: ${{ github.workspace }}/build/distributions
+
       # Store already-built plugin as an artifact for downloading
       - name: Upload artifact
         uses: actions/upload-artifact@v2.2.4
@@ -149,8 +153,8 @@ jobs:
       - name: Download build-output artifact
         uses: actions/download-artifact@v2
         with:
-          name: ${{ needs.build.outputs.filename }}.jar
-          path: ${{ github.workspace }}/build/libs/
+          name: ${{ needs.build.outputs.filename }}.zip
+          path: ${{ github.workspace }}/build/distributions/
 
       - name: Display structure of downloaded files
         run: ls -R
