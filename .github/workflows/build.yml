@@ -153,12 +153,12 @@ jobs:
       - name: Download build-output artifact
         uses: actions/download-artifact@v2
         with:
-          name: distributions
+          name: ${{ steps.artifact.outputs.filename }}
           path: ${{ github.workspace }}/build/distributions/
 
       - name: Display structure of downloaded files
         run: ls -R
-        working-directory: ${{ github.workspace }}
+        working-directory: ${{ github.workspace }}/build/distributions/
 
       # Create new release draft - which is not publicly visible and requires manual acceptance
       - name: Create Release Draft
