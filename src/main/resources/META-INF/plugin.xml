@@ -5,6 +5,9 @@
     <vendor>dhananjay12</vendor>
 
     <depends>com.intellij.modules.platform</depends>
+    <depends>org.jetbrains.idea.maven</depends>
+    <depends>com.intellij.java</depends>
+    <description><![CDATA[ Description will be added by gradle build]]></description>
 
     <extensions defaultExtensionNs="com.intellij">
         <applicationService serviceImplementation="com.github.dhananjay12.services.MyApplicationService"/>
@@ -12,15 +15,21 @@
     </extensions>
     
     <actions>
+
+        <group id="ProjectViewPopupCodingHelperMenu" text="Coding Helper" popup="true">
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="first"/>
+        </group>
         
         <action class="com.github.dhananjay12.actions.StackOverflowSearch" text="StackOverflow Search">
             <add-to-group group-id="ConsoleEditorPopupMenu" anchor="first"></add-to-group>
             <add-to-group group-id="EditorPopupMenu" anchor="first"></add-to-group>
         </action>
+        <action class="com.github.dhananjay12.actions.FindMyInterfaceImpl" text="Find MyInterface Impl">
+            <add-to-group group-id="ProjectViewPopupCodingHelperMenu" anchor="first"/>
+        </action>
     </actions>
 
+    <change-notes><![CDATA[	Change notes will be filled by gradle build ]]> </change-notes>
     <applicationListeners>
-        <listener class="com.github.dhananjay12.listeners.MyProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
     </applicationListeners>
 </idea-plugin>

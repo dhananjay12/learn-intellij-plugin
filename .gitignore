@@ -2,3 +2,5 @@
 .idea
 .qodana
 build
+**/target
+**/.DS_Store
